@@ -8,32 +8,33 @@
 
 <body>
     <script>
-/*>create an array for the computer to choose from*/
+        /*>create an array for the computer to choose from*/
         const selection = ['rock', 'paper', 'scissors'];
-/*Computer makes a random selection of r,p,s */
+        /*Computer makes a random selection of r,p,s */
         function computerPlay() {
             const random = Math.floor(Math.random() * selection.length);
-/*must access the array for it to give one of the strings listed, otherwise it will select a number (0,1,2)and print that*/
+            /*must access the array for it to give one of the strings listed, otherwise it will select a number (0,1,2)and print that*/
             const randomSelection = selection[random];
             return randomSelection;
         }
-/*This function runs the game over and over (if) until someone hits a score of 5, 
-(then aka else) it will run the winCondition function to alert who has won */
+        /*This function runs the game over and over (if) until someone hits a score of 5, 
+        (then aka else) it will run the winCondition function to alert who has won */
         function game() {
-/* These variable are defined here so that each time game() is run we get new input*/
+            /* These variable are defined here so that each time game() is run we get new input*/
             let playerSelection = input();
             let computerSelection = computerPlay();
-/* pay attention to the logic of the if argument, and make sure that it coincides
- with the logic of the else statement and any functions it calls. */
-            if (playerScore < 5 && computerScore < 5) {
+            ++playRoundCount; 
+            /* pay attention to the logic of the if argument, and make sure that it coincides
+             with the logic of the else statement and any functions it calls. */
+            if (playRoundCount < 5) {
                 playRound(playerSelection, computerSelection);
-                console.log('Current score is Player: ' + playerScore + ' and Computer: ' + computerScore + '. On to next round.');
+                alert('Current score is: Player: ' + playerScore + '  Computer: ' + computerScore + '. On to next round.');
                 setTimeout(game, 0);
             } else {
                 winCondition();
             }
         }
-/*This function prompts the user every time a new round begins. */
+        /*This function prompts the user every time a new round begins. */
         function input() {
             let userInput = prompt('Rock, Paper, or Scissors?');
             let playerInput = userInput.toLowerCase();
@@ -41,53 +42,57 @@
         }
 
 
-/*defining variable and filling them with an empty value. */
+        /*defining variable and filling them with an empty value. */
         let playerScore = 0;
         let computerScore = 0;
-
-/*the function that will trigger when someone reaches 5 points.*/
+        let playRoundCount = 0;
+        /*the function that will trigger when the game reaches 5 rounds.*/
         function winCondition() {
-            if (playerScore === 5) {
-                alert('You have ' + playerScore + ' and the computer has ' + computerScore + '. You win!')
-            } 
-            if (computerScore === 5) {
-                alert('You have ' + playerScore + ' and the computer has ' + computerScore + '. Sorry, you lose!')
+            if (playerScore > computerScore) {
+                alert('You have ' + playerScore + ' and the computer has ' + computerScore + '. You win!');
+            }
+            if (computerScore > playerScore) {
+                alert('You have ' + playerScore + ' and the computer has ' + computerScore + '. Sorry, you lose!');
+            }
+            if (computerScore === playerScore) {
+                alert('You have ' + playerScore + ' and the computer has ' + computerScore + ". It's a tie! Try again!")
             }
         }
 
 
-/*>maybe do this using if else statements for each different selection?*/
+        /*>maybe do this using if else statements for each different selection?*/
         function playRound(playerSelection, computerSelection) {
             if (playerSelection === 'rock' && computerSelection === 'scissors') {
                 ++playerScore;
-                console.log(playerSelection +' beats ' + computerSelection + '! You Win!');
+                return(playerSelection + ' beats ' + computerSelection + '! You Win!');
             } else if (playerSelection === 'rock' && computerSelection === 'paper') {
                 ++computerScore;
-                console.log(playerSelection + ' beats ' + computerSelection + '! Sorry, you Lose!');
+                return(playerSelection + ' beats ' + computerSelection + '! Sorry, you Lose!');
             } else if (playerSelection === 'rock' && computerSelection === 'rock') {
-                console.log("It's a tie! Try again!");
+                return("It's a tie! Try again!");
             } else if (playerSelection === 'paper' && computerSelection === 'rock') {
                 ++playerScore;
-                console.log(playerSelection + ' beats ' + computerSelection + '! You Win!');
+                return(playerSelection + ' beats ' + computerSelection + '! You Win!');
             } else if (playerSelection === 'paper' && computerSelection === 'paper') {
-                console.log("It's a tie! Try again!");
+                return("It's a tie! Try again!");
             } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
                 ++computerScore;
-                console.log(playerSelection + ' beats ' + computerSelection + '! Sorry, you Lose!');
+                return(playerSelection + ' beats ' + computerSelection + '! Sorry, you Lose!');
             } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
                 ++computerScore;
-                console.log(playerSelection + ' beats ' + computerSelection + '! Sorry, you Lose!');
+                return(playerSelection + ' beats ' + computerSelection + '! Sorry, you Lose!');
             } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
                 ++playerScore;
-                console.log(playerSelection + ' beats ' + computerSelection + '! You Win!');
+                return(playerSelection + ' beats ' + computerSelection + '! You Win!');
             } else if (playerSelection === 'scissors' && computerSelection === 'scissors') {
-                console.log("It's a tie! Try again!");
+                return("It's a tie! Try again!");
             } else {
-                alert('Did you enter Rock, Paper, or Scissors? Refresh!');
+                --playRoundCount;
+                alert('Did you enter Rock, Paper, or Scissors?');
             }
 
         }
-/*run the game function.*/
+        /*run the game function.*/
         game();
     </script>
 </body>
