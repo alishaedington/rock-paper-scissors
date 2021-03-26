@@ -1,0 +1,104 @@
+button {
+    position: relative;
+    display: inline-flex;
+    padding: 10px 15px;
+    width: 150px;
+    height: 107px;
+    line-height: 40px;
+    background: rgb(0, 0, 0);
+    color: white;
+    text-align: center;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: larger;
+}
+#rock::before {
+    content: url("https://lh3.googleusercontent.com/nd0R_6lLWJ_GPmjFr2sWX4Kj97_iV7myL8n9S8WqYvQ6y49FTdowGlkFeVgCNHj1bjT6WIe3OUDpCcKzICQLdKIR7QlKR1bc1GoXdAv0pp8bBfCU8OsDTFYLH357Qt5iiG9Dv1tx7g=w2400");
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    line-height: 55px;
+    background: rgb(123, 141, 240);
+    color: black;
+    transition: all 500ms cubic-bezier(0.93, 1.25, 0, 1.29);
+    top: -100%;
+    left: 0;
+}
+
+#rock:hover::before {
+    top: 0;
+}
+#paper::before {
+    content: url('https://lh3.googleusercontent.com/opEoQlZHwK5Hw1z_x5GOzOQcwF0Fom6OcOXuGOFTaKqRQI7sHzLn5kRosTq2v3-UrSYmr2RdTbNHjnKykXwVnG_ludnXSfkOZa_Wio_09tykocTQPvEif9-9ogz4r07qdZjyGfkdVQ=w2400');
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    line-height: 55px;
+    background: rgb(123, 141, 240);
+    color: black;
+    transition: all 500ms cubic-bezier(0.93, 1.25, 0, 1.29);
+    top: -100%;
+    left: 0;
+}
+
+#paper:hover::before {
+    top: 0;
+}
+#scissors::before {
+    content: url('https://lh3.googleusercontent.com/zYNK4TGkKkcq_gLh58aOWU6N37d61Mhxpr9oRIFyFvH8ceifseOaqHKTYT4BiRbNh78ndMzyQ5WMHstwmo2FrWV04rMXdi_t9ashH9NhvBQPi9np2_l5iT5elZvQK6yanKYaiwLoCA=w2400');
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    line-height: 55px;
+    background:rgb(123, 141, 240);
+    color: black;
+    transition: all 500ms cubic-bezier(0.93, 1.25, 0, 1.29);
+    top: -100%;
+    left: 0;
+}
+
+#scissors:hover::before {
+    top: 0;
+}
+
+#Buttons {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    border: 1px;
+}
+h1 {
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+    text-shadow: 5px 5px 5px red;
+}
+#choices {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+
+}
+
+#round {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+}
+#outputs {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+}
+
