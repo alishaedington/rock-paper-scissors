@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <h1>Choose Your Destiny:</h1>
+    <div id='Buttons'>
+        <button id='rock'>ROCK!</button>
+        <button id='paper'>PAPER!</button>
+        <button id='scissors'>SCISSORS!</button>
+    </div>
+    <div id='choices'></div>
+    <div id='round'></div>
+    <div id='outputs'>
+        <p>
+            The current score is:
+        </p>
+    </div>
+
+
+    <script>
+        const selection = ['rock', 'paper', 'scissors'];
+        const outputs = document.querySelector('#outputs');
+        const choices = document.querySelector('#choices');
+        const round = document.querySelector('#round');
+
+        const score = document.createElement('div');
+        score.classList.add('score');
+        outputs.appendChild(score);
+
+
+        let playerScore = 0;
+        let computerScore = 0;
+
+        function computerPlay() {
+            const random = Math.floor(Math.random() * selection.length);
+            const randomSelection = selection[random];
+            return randomSelection;
+        }
+
+        function playRound() {
+
+            let playerSelection = event.target.id;
+            let computerSelection = computerPlay();
+            choices.textContent = ''+playerSelection.toUpperCase() + '! VS. '+ computerSelection.toUpperCase() + '!';
+
+            if (playerSelection === 'rock' && computerSelection === 'scissors') {
+                ++playerScore;
+                round.textContent = (playerSelection.toUpperCase() + ' beats ' + computerSelection.toUpperCase() + '! You win this round!');
+            } else if (playerSelection === 'rock' && computerSelection === 'paper') {
+                ++computerScore;
+                round.textContent = (playerSelection.toUpperCase() + ' beats ' + computerSelection.toUpperCase() + '! Sorry, you lose this round!');
+            } else if (playerSelection === 'rock' && computerSelection === 'rock') {
+                ++computerScore;
+                ++playerScore;
+                round.textContent =("It's a tie! You both win this round!");
+            } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+                ++playerScore;
+                round.textContent = (playerSelection.toUpperCase() + ' beats ' + computerSelection.toUpperCase() + '! You win this round!');
+            } else if (playerSelection === 'paper' && computerSelection === 'paper') {
+                ++computerScore;
+                ++playerScore;
+                round.textContent =("It's a tie! You both win this round!");
+            } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+                ++computerScore;
+                round.textContent = (playerSelection.toUpperCase() + ' beats ' + computerSelection.toUpperCase() + '! Sorry, you lose this round!');
+            } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+                ++computerScore;
+                round.textContent =(playerSelection.toUpperCase() + ' beats ' + computerSelection.toUpperCase() + '! Sorry, you lose this round!');
+            } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+                ++playerScore;
+                round.textContent = (playerSelection.toUpperCase() + ' beats ' + computerSelection.toUpperCase() + '! You win this round!');
+            } else if (playerSelection === 'scissors' && computerSelection === 'scissors') {
+                ++computerScore;
+                ++playerScore;
+                round.textContent =("It's a tie! You both win this round!");
+            }
+        }
+
+        function game() {
+            playRound();
+            score.textContent = ('Player: ' + playerScore + ' and Computer: ' + computerScore + '.');
+            winCondition();
+        }
+        function winCondition() {
+            if ((playerScore === 5 || computerScore === 5) && computerScore === playerScore) {
+                score.textContent = ('You have ' + playerScore + ' and the computer has ' + computerScore + ". It's a tie! Refresh to try again!");
+            } else if ((playerScore === 5 || computerScore === 5) && playerScore > computerScore) {
+                score.textContent = ('You have ' + playerScore + ' and the computer has ' + computerScore + '. You win! Wanna play again? Refresh!');
+            } else if ((playerScore === 5 || computerScore === 5) && computerScore > playerScore) {
+                score.textContent = ('You have ' + playerScore + ' and the computer has ' + computerScore + '. Sorry, you lose! Want a rematch? Refresh!');
+            }
+        }
+
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => button.addEventListener('click', game));
+
+    </script>
+</body>
+
+</html>

@@ -13,7 +13,8 @@
         /*Computer makes a random selection of r,p,s */
         function computerPlay() {
             const random = Math.floor(Math.random() * selection.length);
-            /*must access the array for it to give one of the strings listed, otherwise it will select a number (0,1,2)and print that*/
+            /*must access the array for it to give one of the strings listed, otherwise it will
+             select a number (0,1,2)and print that*/
             const randomSelection = selection[random];
             return randomSelection;
         }
@@ -23,10 +24,9 @@
             /* These variable are defined here so that each time game() is run we get new input*/
             let playerSelection = input();
             let computerSelection = computerPlay();
-            ++playRoundCount; 
             /* pay attention to the logic of the if argument, and make sure that it coincides
              with the logic of the else statement and any functions it calls. */
-            if (playRoundCount < 5) {
+            if (playerScore < 5 && computerScore < 5) {
                 playRound(playerSelection, computerSelection);
                 alert('Current score is: Player: ' + playerScore + '  Computer: ' + computerScore + '. On to next round.');
                 setTimeout(game, 0);
@@ -45,16 +45,13 @@
         /*defining variable and filling them with an empty value. */
         let playerScore = 0;
         let computerScore = 0;
-        let playRoundCount = 0;
         /*the function that will trigger when the game reaches 5 rounds.*/
         function winCondition() {
             if (playerScore > computerScore) {
                 alert('You have ' + playerScore + ' and the computer has ' + computerScore + '. You win!');
-            }
-            if (computerScore > playerScore) {
+            } else if (computerScore > playerScore) {
                 alert('You have ' + playerScore + ' and the computer has ' + computerScore + '. Sorry, you lose!');
-            }
-            if (computerScore === playerScore) {
+            } else if (computerScore === playerScore) {
                 alert('You have ' + playerScore + ' and the computer has ' + computerScore + ". It's a tie! Try again!")
             }
         }
